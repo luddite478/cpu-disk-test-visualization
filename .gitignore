@@ -1,0 +1,6 @@
+cpu_logs
+*.mp4
+*.png
+write_test*
+*.txt
+data
