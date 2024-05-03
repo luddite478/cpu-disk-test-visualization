@@ -6,7 +6,7 @@ sudo apt-get install -y fio sysstat gnuplot ffmpeg python3-pip dos2unix
 pip install Pillow
 
 MONITORING_DURATION="1200"
-DISK_LOAD_DURATION="5"
+DISK_LOAD_DURATION="1200"
 TOTAL_CPU_SAMPLING_INTERVAL="1"
 PROCESSES_CPU_SAMPLING_INTERVAL="1"
 IDLE_DURATION="$((MONITORING_DURATION - DISK_LOAD_DURATION))"
@@ -120,7 +120,7 @@ echo "Test end: $(date +%H:%M:%S)"
 echo "Result CPU usage plot: $(pwd)/cpu.png"
 echo "Creating a video from the CPU logs..."
 
-dos2unix create_video.py > /dev/null
+dos2unix create_video.py 2> /dev/null
 ./create_video.py
 
 rm -rf data
