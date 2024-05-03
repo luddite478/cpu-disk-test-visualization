@@ -117,10 +117,11 @@ sleep 1
 generate_total_cpu_plot $TOTAL_CPU_TXT_PATH $TOTAL_CPU_PNG_PATH
 
 echo "Test end: $(date +%H:%M:%S)"
-echo "Result CPU usage plot: $(pwd)/cpu.png"
 echo "Creating a video from the CPU logs..."
 
 dos2unix create_video.py 2> /dev/null
 ./create_video.py
+
+echo "Result CPU usage video: $(pwd)/cpu.mp4"
 
 rm -rf data
