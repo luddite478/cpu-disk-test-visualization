@@ -112,12 +112,14 @@ collect_total_cpu_metrics "$MONITORING_DURATION" "$TOTAL_CPU_SAMPLING_INTERVAL" 
 
 monitor_top_cpu_processes "$MONITORING_DURATION" "$PROCESSES_CPU_SAMPLING_INTERVAL" $PROCESSES_CPU_FOLDER_PATH
 
+echo "Test end: $(date +%H:%M:%S)"
+
 sleep 1
 
+echo "Creating a total CPU utilisation plot..."
 generate_total_cpu_plot $TOTAL_CPU_TXT_PATH $TOTAL_CPU_PNG_PATH
 
-echo "Test end: $(date +%H:%M:%S)"
-echo "Creating a video from the CPU logs..."
+echo "Creating a final CPU usage video..."
 
 dos2unix create_video.py 2> /dev/null
 ./create_video.py
