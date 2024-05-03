@@ -5,8 +5,8 @@ sudo apt-get update
 sudo apt-get install -y fio sysstat gnuplot ffmpeg python3-pip dos2unix
 pip install Pillow
 
-MONITORING_DURATION="1200"
-DISK_LOAD_DURATION="1200"
+MONITORING_DURATION="30"
+DISK_LOAD_DURATION="30"
 TOTAL_CPU_SAMPLING_INTERVAL="1"
 PROCESSES_CPU_SAMPLING_INTERVAL="1"
 IDLE_DURATION="$((MONITORING_DURATION - DISK_LOAD_DURATION))"
@@ -106,7 +106,7 @@ EOF
 rm -rf "$DATA_FOLDER"
 mkdir -p "$DATA_FOLDER"
 
-run_disk_load $DATA_FOLDER 
+run_disk_load $DATA_FOLDER &
 
 collect_total_cpu_metrics "$MONITORING_DURATION" "$TOTAL_CPU_SAMPLING_INTERVAL" $TOTAL_CPU_TXT_PATH &
 
@@ -126,4 +126,4 @@ dos2unix create_video.py 2> /dev/null
 
 echo "Result CPU usage video: $(pwd)/cpu.mp4"
 
-rm -rf data
+#rm -rf data
