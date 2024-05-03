@@ -1,8 +1,9 @@
 #!/bin/bash
 
 export DEBIAN_FRONTEND=noninteractive
-# sudo apt-get update
-# sudo apt-get install -y fio sysstat gnuplot ffmpeg
+sudo apt-get update
+sudo apt-get install -y fio sysstat gnuplot ffmpeg python3-pip
+pip install Pillow
 
 MONITORING_DURATION="5"
 DISK_LOAD_DURATION="5"
