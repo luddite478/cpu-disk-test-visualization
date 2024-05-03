@@ -1,11 +1,11 @@
 #!/bin/bash
-
+set -e
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update
-sudo apt-get install -y fio sysstat gnuplot ffmpeg python3-pip
+sudo apt-get install -y fio sysstat gnuplot ffmpeg python3-pip dos2unix
 pip install Pillow
 
-MONITORING_DURATION="5"
+MONITORING_DURATION="1200"
 DISK_LOAD_DURATION="5"
 TOTAL_CPU_SAMPLING_INTERVAL="1"
 PROCESSES_CPU_SAMPLING_INTERVAL="1"
@@ -120,6 +120,7 @@ echo "Test end: $(date +%H:%M:%S)"
 echo "Result CPU usage plot: $(pwd)/cpu.png"
 echo "Creating a video from the CPU logs..."
 
-python create_video.py
+dos2unix create_video.py > /dev/null
+./create_video.py
 
 rm -rf data
