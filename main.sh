@@ -5,8 +5,8 @@ sudo apt-get update
 sudo apt-get install -y fio sysstat gnuplot ffmpeg python3-pip dos2unix
 pip install Pillow datetime
 
-MONITORING_DURATION="1200"
-DISK_LOAD_DURATION="1200"
+MONITORING_DURATION="1800"
+DISK_LOAD_DURATION="1800"
 TOTAL_CPU_SAMPLING_INTERVAL="3"
 PROCESSES_CPU_SAMPLING_INTERVAL="1"
 IDLE_DURATION="$((MONITORING_DURATION - DISK_LOAD_DURATION))"
