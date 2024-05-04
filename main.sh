@@ -3,7 +3,7 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update
 sudo apt-get install -y fio sysstat gnuplot ffmpeg python3-pip dos2unix
-pip install Pillow
+pip install Pillow datetime
 
 MONITORING_DURATION="1200"
 DISK_LOAD_DURATION="1200"
@@ -121,7 +121,6 @@ generate_total_cpu_plot $TOTAL_CPU_TXT_PATH $TOTAL_CPU_PNG_PATH
 
 echo "Creating a final CPU usage video..."
 
-dos2unix create_video.py 2> /dev/null
 ./create_video.py
 
 echo "Result CPU usage video: $(pwd)/cpu.mp4"

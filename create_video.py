@@ -7,6 +7,7 @@ import shutil
 import os
 import subprocess
 import shutil
+from datetime import datetime, timedelta
 
 # Specify the folder paths
 cpu_logs_path = 'data/cpu_processes_log'
@@ -96,12 +97,17 @@ def generate_timestamp_image(timestamp, output_image_path):
 
     timestamp_img.save(output_image_path)
 
-def concatenate_images_to_video(input_folder, duration_per_image, output_video_path):
+def concatenate_images_to_video(input_folder, duration_per_image, output_video_path):  
+    image_files = []
+    for filename in os.listdir(input_folder):
+        if filename.endswith('.png'):
+            image_files.append(filename)
+    
+    sorted_image_files = sorted(image_files, key=lambda x: datetime.strptime(x.split('_')[0].split('.')[0], '%H-%M-%S'))
     concat_file_path = os.path.join('data/concat.txt')
     with open(concat_file_path, 'w') as file:
-        for filename in os.listdir(input_folder):
-            if filename.endswith('.png'):
-                file.write(f"file '{os.path.abspath(os.path.join(input_folder, filename))}'\nduration {duration_per_image}\n")
+        for filename in sorted_image_files:
+            file.write(f"file '{os.path.abspath(os.path.join(input_folder, filename))}'\nduration {duration_per_image}\n")
 
     command = [
         'ffmpeg',
@@ -112,7 +118,7 @@ def concatenate_images_to_video(input_folder, duration_per_image, output_video_p
         '-i', concat_file_path,
         '-framerate', '1',
         '-c:v', 'libx264',
-        '-c:a', 'copy',
+        '-preset', 'ultrafast', 
         '-r', '1',
         '-pix_fmt', 'yuv420p',
         '-y',
@@ -124,7 +130,7 @@ def concatenate_images_to_video(input_folder, duration_per_image, output_video_p
     except Exception as e:
         print(f"Error occurred while merging images to the video: {e}")
 
-    os.remove(concat_file_path)
+    # os.remove(concat_file_path)
 
 create_output_folders(output_folder_path, stacked_folder_1_path, timestamp_folder_path)
 
@@ -151,6 +157,10 @@ for filename in os.listdir(cpu_logs_path):
 
         stacked_imge_2_path = os.path.join(stacked_folder_2_path, timestamp + '_stack.png')
         concatenate_vertical(stacked_image_path, timestamp_image_path, stacked_imge_2_path)
+
+        # start = 44,412
+        # end = 619,412 
+
 
 # concatenate images to video
 concatenate_images_to_video(stacked_folder_2_path, cpu_proc_sampling_rate, output_video_path)
