@@ -4,3 +4,4 @@ cpu_logs
 write_test*
 *.txt
 data
+archive

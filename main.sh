@@ -29,7 +29,7 @@ run_disk_load() {
         --iodepth=64 \
         --rw=write \
         --bs=4k \
-        --size=5G \
+        --size=3G \
         --numjobs=1 \
         --runtime="$DISK_LOAD_DURATION" \
         --time_based \

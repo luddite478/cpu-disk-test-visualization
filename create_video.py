@@ -43,16 +43,15 @@ def create_output_folders(output_folder_path, stacked_folder_1_path, timestamp_f
 def generate_proc_table_image(lines, output_image_path):
     font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 15)
 
-    img = Image.new('RGB', (500, 300), color=(73, 109, 137))
+    img = Image.new('RGB', (500, 300), color=(255, 255, 255))
     d = ImageDraw.Draw(img)
 
     x = 10
     y = 10
 
-    # Draw each line separately
     for line in lines:
-        d.text((x, y), line, fill=(255, 255, 0), font=font)
-        y += 15  # Move to the next line. Adjust the value as needed.
+        d.text((x, y), line, fill=(0, 0, 0), font=font)
+        y += 15
 
     img = img.resize((640, 480))
 
@@ -91,9 +90,9 @@ def concatenate_vertical(img1, img2, output_image_path):
 def generate_timestamp_image(timestamp, output_image_path):
     font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 40)
 
-    timestamp_img = Image.new('RGB', (1280, 100), color=(73, 109, 137))
+    timestamp_img = Image.new('RGB', (1280, 100), color=(255, 255, 255))
     d = ImageDraw.Draw(timestamp_img)
-    d.text((500, 20), timestamp, fill=(255, 255, 0), font=font)
+    d.text((500, 20), timestamp, fill=(0, 0, 0), font=font)
 
     timestamp_img.save(output_image_path)
 
