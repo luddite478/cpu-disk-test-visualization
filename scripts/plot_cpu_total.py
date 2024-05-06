@@ -24,7 +24,7 @@ def plot_cpu_total(target_time, cpu_total_table_path, cpu_total_img_dir):
     df['time'] = pd.to_datetime(df['time'], format='%H:%M:%S').dt.time
     df['time'] = df['time'].apply(lambda t: t.hour*3600 + t.minute*60 + t.second)
 
-    plt.figure(figsize=(6.4, 4.8))
+    plt.figure(figsize=(12.8, 3.6))
 
     target_time_seconds = time_to_seconds(target_time)
     # Add a vertical line representing the current time

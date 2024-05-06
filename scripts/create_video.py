@@ -41,7 +41,7 @@ def generate_proc_table_image(lines, timestamp, cpu_proc_logs_img_path):
     table_file_path = os.path.join(cpu_proc_logs_img_path, timestamp + '.png')
     font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 15)
 
-    img = Image.new('RGB', (500, 300), color=(255, 255, 255))
+    img = Image.new('RGB', (1280, 360), color=(255, 255, 255))
     d = ImageDraw.Draw(img)
 
     x = 10
@@ -54,8 +54,6 @@ def generate_proc_table_image(lines, timestamp, cpu_proc_logs_img_path):
     for line in lines:
         d.text((x, y), line, fill=(0, 0, 0), font=font)
         y += 15
-
-    img = img.resize((640, 480))
 
     img.save(table_file_path)
     return table_file_path
@@ -87,7 +85,7 @@ def concatenate_total_to_proc(timestamp, total_dir, proc_dir, stacked_folder_1_p
         '-hide_banner',
         '-i', concat_total_path,
         '-i', concat_proc_path,
-        '-filter_complex', '[0:v]scale=640:480[v0];[1:v]scale=640:480[v1];[v0][v1]hstack',
+        '-filter_complex', '[0:v]scale=1200:360[v0];[1:v]scale=1200:360[v1];[v0][v1]vstack',
         '-y', stacked_image_path
     ]
     run_ffmpeg(command)

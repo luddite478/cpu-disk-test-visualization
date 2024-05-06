@@ -5,8 +5,8 @@ sudo apt-get update
 sudo apt-get install -y fio sysstat ffmpeg python3-pip
 pip install Pillow datetime pandas matplotlib
 
-MONITORING_DURATION="1800"
-DISK_LOAD_DURATION="1800"
+MONITORING_DURATION="60"
+DISK_LOAD_DURATION="60"
 TOTAL_CPU_SAMPLING_INTERVAL="3"
 PROCESSES_CPU_SAMPLING_INTERVAL="1"
 IDLE_DURATION="$((MONITORING_DURATION - DISK_LOAD_DURATION))"
@@ -58,7 +58,7 @@ collect_top_cpu_processes_usage() {
     while ((current_time - start_time < monitoring_duration)); do
         # Run the command to get top CPU processes and save it to a text file
         ps -eo pcpu,pid,user,args --sort=-pcpu \
-            | awk '{cmd=""; for(i=4;i<=NF;i++){cmd=cmd" "$i}; cmd=substr(cmd,1,20); printf "%-8s %-8s %-8s %-20s\n", $1, $2, $3, cmd}' \
+            | awk '{cmd=""; for(i=4;i<=NF;i++){cmd=cmd" "$i}; cmd=substr(cmd,1,100); printf "%-8s %-8s %-8s %-20s\n", $1, $2, $3, cmd}' \
             | head -n "$top_n_processes" > "$output_dir/$(date +%H-%M-%S).txt"
         sleep 1
         current_time=$(date +%s)
