@@ -46,7 +46,7 @@ collect_top_cpu_processes_usage() {
     local monitoring_duration="$1"
     local sampling_interval="$2"
     local output_dir="$3"
-    local top_n_processes=15
+    local top_n_processes=18
 
     start_time=$(date +%s)
     current_time=$(date +%s)
