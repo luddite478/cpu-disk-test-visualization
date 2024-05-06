@@ -6,7 +6,7 @@ sudo apt-get install -y fio sysstat ffmpeg python3-pip
 pip install Pillow datetime pandas matplotlib
 
 MONITORING_DURATION="1800"
-DISK_LOAD_DURATION="1800"
+DISK_LOAD_DURATION="1800" # set this lower to see the CPU usage without disk load
 TOTAL_CPU_SAMPLING_INTERVAL="3"
 PROCESSES_CPU_SAMPLING_INTERVAL="1"
 IDLE_DURATION="$((MONITORING_DURATION - DISK_LOAD_DURATION))"
