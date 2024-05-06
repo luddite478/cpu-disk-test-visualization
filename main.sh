@@ -78,10 +78,10 @@ run_disk_load $DATA_FOLDER &
 collect_total_cpu_metrics "$MONITORING_DURATION" "$TOTAL_CPU_SAMPLING_INTERVAL" $TOTAL_CPU_TXT_PATH &
 collect_top_cpu_processes_usage "$MONITORING_DURATION" "$PROCESSES_CPU_SAMPLING_INTERVAL" $PROCESSES_CPU_FOLDER_PATH
 
-echo "Finished collecting metrics"
-echo "Test end: $(date +%H:%M:%S)"
+echo "[$(date +%H:%M:%S)] Finished collecting metrics"
 
 echo "Converting CPU metrics to visual representation..."
 sleep 1
 ./scripts/create_video.py
-echo "Result CPU usage video: $(pwd)/cpu.mp4"
+echo "[$(date +%H:%M:%S)] Test end"
+echo "[$(date +%H:%M:%S)] Result CPU usage video: $(pwd)/cpu.mp4"
