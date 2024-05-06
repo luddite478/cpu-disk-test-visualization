@@ -37,7 +37,7 @@ def plot_cpu_total(target_time, cpu_total_table_path, cpu_total_img_dir):
 
     plt.plot(df['time'], df['%system'], label='%system')
     plt.plot(df['time'], df['%user'], label='%user')
-    plt.xlabel('time')
+    plt.xlabel('Time')
     plt.ylabel('CPU usage (%)')
     plt.ylim(0, 100) 
     plt.legend(fontsize='large')
