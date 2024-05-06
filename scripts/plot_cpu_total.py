@@ -17,7 +17,7 @@ def seconds_to_hm(x, pos):
 def plot_cpu_total(target_time, cpu_total_table_path, cpu_total_img_dir):
     
     columns = ['time', 'CPU', '%user', '%nice', '%system', '%iowait', '%steal', '%idle']
-    df = pd.read_csv(cpu_total_table_path, delim_whitespace=True, names=columns)
+    df = pd.read_csv(cpu_total_table_path, sep='\s+', names=columns)
 
     df['%user'] = pd.to_numeric(df['%user'], errors='coerce')
     df['%system'] = pd.to_numeric(df['%system'], errors='coerce')
