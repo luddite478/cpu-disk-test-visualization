@@ -5,3 +5,4 @@ write_test*
 *.txt
 data
 archive
+__pycache__
