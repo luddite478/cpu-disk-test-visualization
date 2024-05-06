@@ -5,8 +5,8 @@ sudo apt-get update
 sudo apt-get install -y fio sysstat ffmpeg python3-pip
 pip install Pillow datetime pandas matplotlib
 
-MONITORING_DURATION="60"
-DISK_LOAD_DURATION="60"
+MONITORING_DURATION="1800"
+DISK_LOAD_DURATION="1800"
 TOTAL_CPU_SAMPLING_INTERVAL="3"
 PROCESSES_CPU_SAMPLING_INTERVAL="1"
 IDLE_DURATION="$((MONITORING_DURATION - DISK_LOAD_DURATION))"
